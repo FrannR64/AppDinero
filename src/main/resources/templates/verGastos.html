@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/Template :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="plantillas/Template :: header"></header>
+
+<div class="p-lg-5">
+    <table class="table" >
+        <thead class="table-dark">
+        <th>Gastos</th>
+        <th>Motivos</th>
+        <th style="padding-left: 17px; width: 10vw">editar</th>
+        <th style="padding-left: 17px; width: 10vw">borrar</th>
+        </thead>
+        <tbody>
+        <tr th:each="gas:${gastos} ">
+            <td th:text="${gas.getGasto()}"></td>
+            <td th:text="${gas.getDescripcion()}"></td>
+            <td>
+                <button type="button" class="btn btn-secondary text-center">editar</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-secondary text-center">borrar</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+
+<footer th:replace="plantillas/Template :: footer">
+
+
+</footer>
+</html>

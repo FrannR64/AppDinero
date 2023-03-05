@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/Template :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="row bg-danger justify-content-center " style="background:rgb(198,111,49);
+background: linear-gradient(90deg, rgba(198,111,49,1) 19%, rgba(210,127,55,1) 51%); ">
+<!-- header -->
+<header th:replace="plantillas/Template :: header"></header>
+
+<!-- body-->
+<div class="col-sm-4  text-center font " style="margin-top: 30vh">
+    <h1 th:text=" ${saldo} " style="font-size: 200px"></h1>
+
+</div>
+
+
+<!--footer-->
+<footer th:replace="plantillas/Template :: footer"></footer>
+
+</body>
+</html>

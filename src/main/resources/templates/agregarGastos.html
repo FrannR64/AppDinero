@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="plantillas/Template :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header th:replace="plantillas/Template :: header"></header>
+<!-- body -->
+
+
+<form th:action="@{/extraer}" th:object="${atGasto}" method="post" class="w-25  m-auto mt-lg-5" >
+    <div class="form-group">
+        <label for="exampleInputEmail1">Dinero a Extraer:</label>
+        <input type="number" class="form-control" id="exampleInputEmail1" th:field="*{gasto}" placeholder="dinero a extraer">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Motivo: </label>
+        <input type="text" class="form-control" th:field="*{descripcion}" id="exampleInputPassword1" placeholder="motivo....">
+    </div>
+    <button type="submit" class="btn btn-success mt-4">Agregar</button>
+</form>
+
+
+<footer th:replace="plantillas/Template :: footer">
+
+
+</footer>
+
+
+</body>
+</html>

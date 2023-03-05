@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/Template :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header th:replace="plantillas/Template :: header"></header>
+<!-- body -->
+
+
+<form method="post" th:action="@{/ingresar}" th:object="${atIngresar}" class="w-25  m-auto mt-lg-5">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Dinero a ingresar:</label>
+        <input type="number" th:field="*{saldo}" class="form-control" id="exampleInputEmail1" placeholder="dinero a ingresar">
+    </div>
+    <button type="submit" class="btn btn-success mt-4">Ingresar</button>
+</form>
+
+
+<footer th:replace="plantillas/Template :: footer">
+
+
+</footer>
+
+
+</body>
+</html>
