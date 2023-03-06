@@ -20,10 +20,11 @@
             <td th:text="${gas.getGasto()}"></td>
             <td th:text="${gas.getDescripcion()}"></td>
             <td>
-                <button type="button" class="btn btn-secondary text-center">editar</button>
+                <a class="btn btn-primary" th:href="@{'/editarGasto/'+${gas.getId()}+'/'+${gas.getGasto()}}">editar</a>
             </td>
             <td>
-                <button type="button" class="btn btn-secondary text-center">borrar</button>
+                <a class="btn btn-danger" th:href="@{'/eliminarGasto/'+${gas.getId()}+'/'+${gas.getGasto()}}">eliminar</a>
+
             </td>
         </tr>
         </tbody>
