@@ -13,9 +13,11 @@
 <form method="post" th:action="@{/ingresar}" th:object="${atIngresar}" class="w-25  m-auto mt-lg-5">
     <div class="form-group">
         <label for="exampleInputEmail1">Dinero a ingresar:</label>
-        <input type="number" th:field="*{saldo}" class="form-control" id="exampleInputEmail1" placeholder="dinero a ingresar">
+        <input type="number" th:field="*{ingreso}" class="form-control" id="exampleInputEmail1" placeholder="dinero a ingresar">
+        <label for="exampleInputEmail1">descripcion:</label>
+        <input type="text" th:field="*{motivo}" class="form-control" id="exampleInputEmail2" placeholder="descripcion">
     </div>
-    <button type="submit" class="btn btn-success mt-4">Ingresar</button>
+    <button type="submit" class="btn btn-success mt-4">ingresar</button>
 </form>
 
 
