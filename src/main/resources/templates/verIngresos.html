@@ -20,10 +20,10 @@
       <td th:text="${ingr.getIngreso()}"></td>
       <td th:text="${ingr.getMotivo()}"></td>
       <td>
-        <button type="button" class="btn btn-secondary text-center">editar</button>
+        <a class="btn btn-primary" th:href="@{'/editarIngreso/'+${ingr.getId()}+'/'+${ingr.getIngreso()}}">editar</a>
       </td>
       <td>
-        <button type="button" class="btn btn-secondary text-center">borrar</button>
+        <a class="btn btn-danger" th:href="@{'/eliminarIngreso/'+${ingr.getId()}+'/'+${ingr.getIngreso()}}">eliminar</a>
       </td>
     </tr>
     </tbody>

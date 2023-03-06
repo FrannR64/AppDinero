@@ -16,15 +16,12 @@ import java.util.List;
 
 @Controller
 public class GestionController {
-    private static Integer cont = 0;
     @Autowired
     private DineroRepository dineroRepository;
-
     @Autowired
     private GastoRepository gastoRepository;
-
     @Autowired
-    private IngresosRepository ingresosRepository;
+    private IngresosRepository ingresoRepository;
     private Integer id;
     private int dineroCambiar;
 
@@ -45,7 +42,7 @@ public class GestionController {
 
     @PostMapping("/ingresar")
     public String ingresarDinero(@ModelAttribute("atIngresar") Ingreso ingreso) {
-        ingresosRepository.save(ingreso);
+        ingresoRepository.save(ingreso);
         Dinero dinero1 = dineroRepository.getReferenceById(1L);
         dinero1.setSaldo((int) (dinero1.getSaldo() + ingreso.getIngreso()));
         dineroRepository.save(dinero1);
@@ -54,7 +51,7 @@ public class GestionController {
 
     @GetMapping("/verIngresos")
     public String verIngresos(Model model) {
-        List<Ingreso> ingresos = ingresosRepository.findAll();
+        List<Ingreso> ingresos = ingresoRepository.findAll();
         model.addAttribute("ingreso", ingresos);
         return "verIngresos";
     }
@@ -86,7 +83,7 @@ public class GestionController {
     }
 
 
-    //botones
+    //-----------------------------------botones gastos----------------------------------------------------------
     @GetMapping("/editarGasto/{id}/{dineroCambiar}")
     public String editarGasto(Model model, @PathVariable Integer id, @PathVariable int dineroCambiar) {
         this.id = id;
@@ -99,7 +96,7 @@ public class GestionController {
     public String edGasto(@ModelAttribute("edGasto") Gasto gasto) {
         gasto.setId(this.id);
         Dinero dinero = dineroRepository.getReferenceById(1L);
-        dinero.setSaldo(dinero.getSaldo() - dineroCambiar + gasto.getGasto());
+        dinero.setSaldo(dinero.getSaldo() + dineroCambiar - gasto.getGasto());
         dineroRepository.save(dinero);
         gastoRepository.save(gasto);
         return "redirect:/verGastos";
@@ -114,6 +111,37 @@ public class GestionController {
         dineroRepository.save(dinero);
         gastoRepository.deleteById(id);
         return "redirect:/verGastos";
+    }
+
+    //-----------------------------botones ingresar-----------------------------------------------------------------
+    @GetMapping("/editarIngreso/{id}/{dineroCambiar}")
+    public String editarIngreso(Model model, @PathVariable Integer id, @PathVariable int dineroCambiar) {
+        this.id = id;
+        this.dineroCambiar = dineroCambiar;
+        model.addAttribute("edIngreso", new Ingreso());
+        return "editarIngreso";
+    }
+
+    @PostMapping("/editarIngr")
+    public String edIngreso(@ModelAttribute("edIngreso") Ingreso ingreso) {
+        ingreso.setId(this.id);
+        Dinero dinero = dineroRepository.getReferenceById(1L);
+        dinero.setSaldo(dinero.getSaldo() - dineroCambiar + ingreso.getIngreso());
+        ingresoRepository.save(ingreso);
+        dineroRepository.save(dinero);
+        return "redirect:/verIngresos";
+
+    }
+
+    @GetMapping("/eliminarIngreso/{id}/{dineroCambiar}")
+    public String eliminarIngreso(@PathVariable Integer id, @PathVariable int dineroCambiar) {
+        this.id=id;
+        this.dineroCambiar= dineroCambiar;
+        Dinero dinero=dineroRepository.getReferenceById(1L);
+        dinero.setSaldo(dinero.getSaldo()-dineroCambiar);
+        dineroRepository.save(dinero);
+        ingresoRepository.deleteById(id);
+        return "redirect:/verIngresos";
     }
 
 }
